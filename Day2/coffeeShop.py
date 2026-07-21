@@ -58,13 +58,18 @@ def calculate_profit(query=""):
 
 
 # Create LangChain Tools
+#make tool descriptions more explicit 
+#about when to use each tool and what input to provide
 tools = [
 
     Tool(
         name="make_coffee",
         func=make_coffee,
         description=(
-            "Makes a number of coffees. "
+            "USE THIS TOOL when the user wants to make money, "
+            "increase profit, earn revenue, or reach a profit goal. "
+            "Each coffee creates exactly $1 profit because it costs $1 "
+            "and sells for $2. "
             "Input should be the number of coffees to make."
         )
     ),
@@ -73,8 +78,9 @@ tools = [
         name="calculate_profit",
         func=calculate_profit,
         description=(
-            "Calculates current profit. "
-            "Use this when checking business earnings."
+            "USE THIS TOOL only when the user asks to check, view, "
+            "or calculate the current profit. "
+            "Do NOT use this tool to create profit."
         )
     )
 ]
