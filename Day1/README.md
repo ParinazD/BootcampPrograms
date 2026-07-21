@@ -48,7 +48,7 @@ Windows (Command Prompt):
 - Execute the main script from your terminal:
 
     ```bash
-    python main.py
+    python geminiAPIcode.py
 
 Type your message and press Enter to chat.
 Type quit or exit to end the session.
