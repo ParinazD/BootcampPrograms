@@ -113,13 +113,14 @@ agent = initialize_agent(
     verbose=True
 )
 '''
+'''
 # Create Agent with the new create_agent API
 agent = create_agent(
     model=llm,
     tools=tools,
     system_prompt="You are a helpful coffee shop manager assistant. Help the user manage finances and make coffee.",
 )
-
+'''
 
 # Chat Loop
 
@@ -146,7 +147,7 @@ while True:
 		# Send request to agent
 response = llmWithTools.invoke(messages)
   # Send request to agent
-response = agent.invoke({"messages": [("user", user_input)]})
+#response = agent.invoke({"messages": [("user", user_input)]})
 print(response.tool_calls)
 tool_calls=response.tool_calls
   
@@ -160,13 +161,15 @@ while response.tool_calls:
               tool_result= make_coffee.invoke(tool_args)
           elif tool_name=='calculate_profit':
               tool_result=calculate_profit.invoke(tool_args)
-messages.append(ToolMessage(content=str(tool_result),tool_call_id=tool_id))
+		messages.append(ToolMessage(content=str(tool_result),tool_call_id=tool_id))
   
   
-response=llmWithTools.invoke(messages)
-  # Print agent response
-agent_reply = response["messages"][-1].content
-print("Agent: ",agent_reply)
+		response=llmWithTools.invoke(messages)
+		print(response)
+		
+  	# Print agent response
+	agent_reply = response["messages"][-1].content
+	print("Agent: ",agent_reply)
 
   # Show current financial state
 print(
